@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SITTA - Tracking Pengiriman</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="dashboard.html">
+        <img
+          src="img/ut.png"
+          alt="logo-ut"
+          style="max-width: 17px; max-height: 17px"
+          alt="Logo"
+      /></a>
+      <a href="stok.html">Informasi Bahan Ajar</a>
+      <a href="tracking.html" style="background: #fbc02d; color: #333"
+        >Tracking Pengiriman</a
+      >
+      <div class="dropdown">
+        <button class="dropbtn">Laporan &#9662;</button>
+        <div class="dropdown-content">
+          <a href="#">Monitoring Progress DO Bahan Ajar</a>
+          <a href="#">Rekap Bahan Ajar</a>
+        </div>
+      </div>
+      <a href="#">Histori Transaksi Bahan Ajar</a>
+      <a href="index.html" style="float: right; background: #f44336">Keluar</a>
+    </nav>
+
+    <main class="container">
+      <h2>Tracking Pengiriman</h2>
+      <div
+        style="
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          margin-bottom: 20px;
+        "
+      >
+        <label>No. DO/Billing: </label>
+        <!-- Pastikan ID  'inputDO' -->
+        <input
+          type="text"
+          id="inputDO"
+          placeholder="Contoh: 2023001234"
+          style="flex: 1; margin: 0"
+        />
+        <!-- Pastikan ID  'btnCariDO' -->
+        <button
+          id="btnCariDO"
+          style="
+            width: auto;
+            margin: 0;
+            padding: 10px 20px;
+            border-radius: 20px;
+          "
+        >
+          Lacak
+        </button>
+      </div>
+
+      <div id="hasilTracking">
+        <!-- Hasil tracking tampil di sini -->
+      </div>
+    </main>
+
+    <!-- Panggil data.js dahulu, baru script.js -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SITTA - Login</title>
+    <!-- Memanggil file CSS dari folder css -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="login-card">
+      <img src="img/ut.png.webp" alt="logo-ut" style="max-width: 20%" />
+      <hr />
+      <h3>Selamat Datang di Aplikasi SITTA-UT</h3>
+      <!-- Alert Email / Password Salah -->
+      <div id="alert-box" class="alert error hidden" role="alert">
+        <span>Email atau password salah!</span>
+        <button type="button" class="close-btn" onclick="closeAlert()">
+          &times;
+        </button>
+      </div>
+      <!-- Hapus onsubmit berikan ID pada form -->
+      <form id="formLogin">
+        <input type="text" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Masuk</button>
+      </form>
+
+      <p style="margin-top: 15px; font-size: 14px">
+        <a href="#" id="btnLupaPassword">Lupa password?</a> |
+        <a href="#" id="btnDaftar">Belum punya akun?</a>
+      </p>
+    </main>
+
+    <!-- Modal Lupa Password -->
+    <div id="modalLupaPassword" class="modal">
+      <div class="modal-content">
+        <span class="close" id="tutupLupaPassword">&times;</span>
+        <h3>Lupa Password</h3>
+        <p>Masukkan email anda untuk pemulihan.</p>
+        <input type="text" placeholder="Email Anda" />
+        <button id="btnKirimLupaPassword">Kirim</button>
+      </div>
+    </div>
+
+    <!-- Modal Daftar -->
+    <div id="modalDaftar" class="modal">
+      <div class="modal-content">
+        <span class="close" id="tutupDaftar">&times;</span>
+        <h3>Daftar Akun Baru</h3>
+        <input type="text" placeholder="Nama Lengkap" />
+        <input type="text" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <button id="btnKirimDaftar">Daftar</button>
+      </div>
+    </div>
+
+    <!-- Panggil data.js dahulu, baru script.js -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

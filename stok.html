@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SITTA - Informasi Stok Bahan Ajar</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="dashboard.html">
+        <img
+          src="img/ut.png"
+          alt="logo-ut"
+          style="max-width: 17px; max-height: 17px"
+          alt="Logo"
+      /></a>
+      <a href="stok.html" style="background: #fbc02d; color: #333"
+        >Informasi Bahan Ajar</a
+      >
+      <a href="tracking.html">Tracking Pengiriman</a>
+      <div class="dropdown">
+        <button class="dropbtn">Laporan &#9662;</button>
+        <div class="dropdown-content">
+          <a href="#">Monitoring Progress DO Bahan Ajar</a>
+          <a href="#">Rekap Bahan Ajar</a>
+        </div>
+      </div>
+      <a href="#">Histori Transaksi Bahan Ajar</a>
+
+      <a href="index.html" style="float: right; background: #f44336">Keluar</a>
+    </nav>
+
+    <main class="container" style="max-width: 900px">
+      <h2>Informasi Bahan Ajar</h2>
+      <p>Daftar Data Bahan Ajar</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Kode Lokasi</th>
+            <th>Kode Barang</th>
+            <th>Nama Bahan Ajar</th>
+            <th>Jenis Barang</th>
+            <th>Edisi</th>
+            <th>Stok</th>
+            <th>Cover</th>
+          </tr>
+        </thead>
+        <!-- Pastikan ID ini tepat 'tabelStok' -->
+        <tbody id="tabelStok">
+          <!-- Data akan dimuat oleh JavaScript -->
+        </tbody>
+      </table>
+
+      <hr style="margin: 30px 0" />
+
+      <h3>Tambah Data Stok Baru</h3>
+      <form id="formTambahStok">
+        <input
+          type="text"
+          id="inputLokasi"
+          placeholder="Kode Lokasi (Cth: 0JKT01)"
+          required
+        />
+        <input
+          type="text"
+          id="inputBarang"
+          placeholder="Kode Barang (Cth: EKMA4216)"
+          required
+        />
+        <input type="text" id="inputNama" placeholder="Nama Barang" required />
+        <input
+          type="text"
+          id="inputJenis"
+          placeholder="Jenis Barang (Cth: BMP)"
+          required
+        />
+        <input type="number" id="inputEdisi" placeholder="Edisi" required />
+        <input
+          type="number"
+          id="inputStok"
+          placeholder="Jumlah Stok"
+          required
+        />
+        <label for="cover">Upload Cover : </label
+        ><input type="file" id="inputCover" placeholder="Cover" required />
+        <br />
+        <button type="submit" style="margin-top: 10px">Tambah Stok</button>
+      </form>
+    </main>
+
+    <!-- 1. Panggil file data.js terlebih dahulu -->
+    <script src="js/data.js"></script>
+
+    <!-- 2. Skrip untuk memaparkan dan menambah stok -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Semakan ralat sekiranya data.js tidak terbaca
+        if (typeof dataBahanAjar === "undefined") {
+          alert("Ralat: Pencarian data Bahan Ajar tidak ditemui.");
+          return;
+        }
+
+        const tbody = document.getElementById("tabelStok");
+
+        // Fungsi untuk memasukkan baris ke dalam DOM
+        function tambahBarisStok(
+          lokasi,
+          barang,
+          nama,
+          jenis,
+          edisi,
+          stok,
+          cover,
+        ) {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+                    <td>${lokasi}</td>
+                    <td>${barang}</td>
+                    <td>${nama}</td>
+                    <td>${jenis}</td>
+                    <td>${edisi}</td>
+                    <td>${stok}</td>
+                    <td><img src="${cover}" alt="cover" width="100" height="150"></td>
+                `;
+          tbody.appendChild(tr);
+        }
+
+        // Tampil data dari data.js
+        dataBahanAjar.forEach((item) => {
+          tambahBarisStok(
+            item.kodeLokasi,
+            item.kodeBarang,
+            item.namaBarang,
+            item.jenisBarang,
+            item.edisi,
+            item.stok,
+            item.cover,
+          );
+        });
+
+        // Fitur Tambah Baris Baru Menggunakan DOM
+        const formTambahStok = document.getElementById("formTambahStok");
+        if (formTambahStok) {
+          formTambahStok.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const lokasi = document.getElementById("inputLokasi").value.trim();
+            const barang = document.getElementById("inputBarang").value.trim();
+            const nama = document.getElementById("inputNama").value.trim();
+            const jenis = document.getElementById("inputJenis").value.trim();
+            const edisi = document.getElementById("inputEdisi").value.trim();
+            const stok = document.getElementById("inputStok").value.trim();
+            const cover = document.getElementById("inputCover").value.trim();
+
+            // Masukkan ke baris data menggunakan manipulasi DOM
+            tambahBarisStok(lokasi, barang, nama, jenis, edisi, stok, cover);
+
+            alert("Data stok baru berhasil ditambah!");
+            formTambahStok.reset();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
